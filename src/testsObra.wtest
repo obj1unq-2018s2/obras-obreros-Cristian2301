@@ -1,0 +1,36 @@
+import obra.*
+import obreros.*
+import uocra.*
+
+describe "group of tests" {
+	
+	const albanil1 = new Albanil()
+	const albanil2 = new Albanil()
+	const gasista1 = new Gasista()
+	const gasista2 = new Gasista()
+	const plomero1 = new Plomero()
+	const electricista1 = new Electricista()
+	const obra1 = new Obra(ladrillos = 1000, metrosDeCanio = 400, fosforos = 8000, arandelas = 500, 
+							plantilla = #{albanil1, albanil2, gasista1, gasista2, plomero1}, efectivo = 100000)
+	
+	
+	test "test" {
+		albanil1.entrarEnLicencia()
+		obra1.jornadaLaboral()
+		assert.equals(900, obra1.ladrillos())
+		assert.equals(384, obra1.metrosDeCanio())
+		assert.equals(7960, obra1.fosforos())
+		assert.equals(470, obra1.arandelas())
+		albanil1.salirDeLicencia()
+		plomero1.entrarEnLicencia()
+		obra1.jornadaLaboral()
+		assert.equals(4000, albanil2.cantACobrar())
+		assert.equals(2000, albanil1.cantACobrar())
+		assert.equals(6000, gasista1.cantACobrar())
+		assert.equals(6000, gasista2.cantACobrar())
+		assert.equals(3000, plomero1.cantACobrar())
+		assert.equals(7000, electricista1.cantACobrar())
+		assert.equals(22000, obra1.importeTotalAdeudado())
+	}
+	
+}
