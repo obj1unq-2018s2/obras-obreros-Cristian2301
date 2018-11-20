@@ -22,9 +22,11 @@ class Obra {
 	
 	method jornadaLaboral(){
 		if(self.obrerosDisponibles().size() > 0){
-			self.obrerosDisponibles().forEach {obrero => obrero.consumir(self)}
-			self.obrerosDisponibles().forEach {obrero => obrero.avanzarEn(self)}
-			self.obrerosDisponibles().forEach {obrero => obrero.jornalesQueSeLeAdeudan(obrero.jornalesQueSeLeAdeudan() + 1)}
+			self.obrerosDisponibles().forEach { obrero => 
+				obrero.consumir(self)
+				obrero.avanzarEn(self)
+				obrero.jornalesQueSeLeAdeudan(obrero.jornalesQueSeLeAdeudan() + 1)
+			}
 		}
 		else{
 			self.error("no hay obreros disponibles para trabajar")
@@ -93,7 +95,11 @@ class Obra {
 	}
 	
 	method cumpleConCablesElectricos(){
-		return cablesElectricosColocados >= 50 * self.habitaciones() + 100 * self.pisos()
+		return cablesElectricosColocados >= self.metrosDeCablesElectricosQueTieneQueHaber()
+	}
+	
+	method metrosDeCablesElectricosQueTieneQueHaber(){
+		return 50 * self.habitaciones() + 100 * self.pisos()
 	}
 	
 	method importeTotalAdeudado(){
@@ -133,8 +139,8 @@ class Edificio inherits Obra {
 	
 	override method banios() = 1
 	
-	override method cumpleConCablesElectricos(){
-		return cablesElectricosColocados >= 50 * self.habitaciones() + 100 * self.pisos() + 300 * ascensores
+	override method metrosDeCablesElectricosQueTieneQueHaber(){
+		return super() + 300 * ascensores
 	}
 }
 

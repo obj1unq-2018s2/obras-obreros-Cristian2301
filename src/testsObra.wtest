@@ -10,7 +10,7 @@ describe "group of tests" {
 	const gasista2 = new Gasista()
 	const plomero1 = new Plomero()
 	const electricista1 = new Electricista()
-	const obra1 = new Obra(ladrillos = 1000, metrosDeCanio = 400, fosforos = 8000, arandelas = 500, 
+	const obra1 = new Edificio(ladrillos = 1000, metrosDeCanio = 400, fosforos = 8000, arandelas = 500, 
 							plantilla = #{albanil1, albanil2, gasista1, gasista2, plomero1}, efectivo = 100000)
 	
 	
