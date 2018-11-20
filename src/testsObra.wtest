@@ -29,8 +29,15 @@ describe "group of tests" {
 		assert.equals(6000, gasista1.cantACobrar())
 		assert.equals(6000, gasista2.cantACobrar())
 		assert.equals(3000, plomero1.cantACobrar())
-		assert.equals(7000, electricista1.cantACobrar())
-		assert.equals(22000, obra1.importeTotalAdeudado())
+//		assert.equals(7000, electricista1.cantACobrar())
+		assert.equals(21000, obra1.importeTotalAdeudado())
+		obra1.pagoDeJornalesAdeudados()
+		assert.equals(0, albanil2.cantACobrar())
+		assert.equals(0, albanil1.cantACobrar())
+		assert.equals(0, gasista1.cantACobrar())
+		assert.equals(0, gasista2.cantACobrar())
+		assert.equals(0, plomero1.cantACobrar())
+		assert.equals(79000, obra1.efectivo())
 	}
 	
 }
